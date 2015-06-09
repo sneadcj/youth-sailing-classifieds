@@ -1,0 +1,67 @@
+﻿@model YouthSailingClassifieds.ViewModels.ListingIndexVm
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Current Items</h2>
+
+
+@*<table id="listing-table" class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.Listings.First().ListingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Listings.First().Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Listings.First().ListingState)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Listings.First().Price)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Listings)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(@item.AlertType, "AlertDetails", new { alertTypeId = item.AlertTypeId })
+                    @Html.DisplayFor(m => item.ListingDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.ListingState)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Price)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>*@
+
+@foreach (var item in Model.Listings)
+{
+    <div class="list-group">
+        <a href="/Details?id=@item.ListingId" class="list-group-item">
+            <h4 class="list-group-item-heading">@String.Format("{0:MM/dd/yyy}", @item.ListingDate) - @item.Title</h4>
+            <p class="list-group-item-text">
+            State: @item.ListingState
+            Price: @item.Price
+            List Date: @item.ListingDate
+            </p>
+            @Html.DisplayFor(m => item.Price) 
+            @item.ListingDate
+        </a>
+    </div>
+
+}
